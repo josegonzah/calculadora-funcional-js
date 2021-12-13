@@ -2,8 +2,12 @@ const operadores = ["+", "*", "-", "/"];
 //isOperator checks if a given character is an operator
 const isOperador = char => operadores.includes(char);
 const operacionesBasicas = {
-	"/": (a, b) => a / b,
-	"*": (a, b) => a * b,
+	"/": (a, b) => {
+		return a === 0 || b === 0 ? 'No se puede dividir entre cero' : b > 1 ? [...Array(a).keys()].reduce((acc, num) => multiplication(num, b) <= a ? adition(acc, 1) : acc, -1) : a;
+	},
+	"*": (a, b) => {
+		return b >= 0 ? [...Array(b)].reduce((acc) => adition(acc, a), 0) : [...Array(a)].reduce((acc) => adition(acc, b), 0);
+	},
 	"+": (a, b) => a + b,
 	"-": (a, b) => a - b,
 }
